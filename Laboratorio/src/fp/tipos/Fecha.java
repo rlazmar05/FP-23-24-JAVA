@@ -2,7 +2,7 @@ package fp.tipos;
 
 import java.util.List;
 import java.util.Objects;
-import java.time.LocalDate;
+
 
 public record Fecha(int año, int mes, int dia) {
 
@@ -38,7 +38,7 @@ public record Fecha(int año, int mes, int dia) {
         int K = añoActual % 100;
         int J = añoActual / 100;
         h = (dia + 13 * (mesActual + 1) / 5 + K + K / 4 + J / 4 + 5 * J) % 7;
-        String[] diasSemana = {"lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"};
+        String[] diasSemana = {"sabado", "domingo", "lunes", "martes", "miércoles", "jueves", "viernes"};
         return diasSemana[h];
     }
 
@@ -52,7 +52,7 @@ public record Fecha(int año, int mes, int dia) {
             int diasRestantesMes = diasMesActual - diaActual + 1;
 
             if (cantidadDias >= diasRestantesMes) {
-                cantidadDias -= cantidadDias - diasRestantesMes;
+                cantidadDias -= diasRestantesMes;
                 diaActual = 1;
                 mesActual++;
 
@@ -93,12 +93,45 @@ public record Fecha(int año, int mes, int dia) {
 
         return new Fecha(añoActual, mesActual, diaActual);
     }
+    
+    public static boolean fechaMayor(Fecha fecha1, Fecha fecha2) {
+    	if (fecha1.año > fecha2.año) {
+    		return true;
+    	} else if (fecha1.año == fecha2.año) {
+    		if (fecha1.mes > fecha2.mes) {
+    			return true;
+    		} else if (fecha1.mes == fecha2.mes) {
+    			return fecha1.dia > fecha2.dia;
+    		}
+    	}
+    	return false;
+    }
 
     public int diferenciaEnDías(Fecha otraFecha) {
-    	LocalDate fecha1 = LocalDate.of(año, mes, dia);
-        LocalDate fecha2 = LocalDate.of(otraFecha.año, otraFecha.mes, otraFecha.dia);
-        return Math.abs((int) fecha1.until(fecha2).getDays());
-    }
+    	int d;
+    	Fecha fechaMayor = new Fecha(año, mes, dia);
+    	Fecha fechaMenor = new Fecha(año, mes, dia);
+    	Fecha fecha = new Fecha(año, mes, dia);
+    	if (fecha == otraFecha) {
+    		d = 0;
+    	}
+    	if (Fecha.fechaMayor(fecha, otraFecha)) {
+    		d = 1;
+    		fechaMenor = otraFecha;
+    		fechaMayor = fecha;
+    	} else {
+    		d = -1;
+    		fechaMenor = fecha;
+    		fechaMayor = otraFecha;
+    	}
+    	int diasDiferencia = 0;
+    	while (Fecha.fechaMayor(fechaMayor, fechaMenor)) {
+    		diasDiferencia = diasDiferencia +1;
+    		fechaMenor = fechaMenor.sumarDías(1);
+    	}
+    	return Math.abs(d * diasDiferencia);
+    	}
+    
 
     private int diasEnMes(int año, int mes) {
         int[] díasPorMes = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
@@ -120,7 +153,7 @@ public record Fecha(int año, int mes, int dia) {
         int K = año % 100;
         int J = año / 100;
         int h = (dia + 13 * (mes + 1) / 5 + K + K / 4 + J / 4 + 5 * J) % 7;
-        String[] díasSemana = {"lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"};
+        String[] díasSemana = {"sábado", "domingo","lunes", "martes", "miércoles", "jueves", "viernes"};
         return díasSemana[h];
     }
 

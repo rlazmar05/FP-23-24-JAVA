@@ -16,6 +16,7 @@ public class TestFecha {
 		//System.out.println(Fecha.parse("2023-07-22"));
 		//System.out.println(fecha1.DiaSemana());
 		//System.out.println(fecha1.congruenciaZeller(2005, 11, 04));
+		System.out.println(fecha1.DiferenciaEnDías(fecha2));
 	}
 	
 	

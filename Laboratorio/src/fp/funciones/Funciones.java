@@ -79,6 +79,71 @@ public class Funciones {
 	    }
 	    
 	    
+	    //INICIO DEFENSA 1
 	    
+	    //APARTADO A
+	    
+	    public static long FuncionP2 (int n, int k, int i) {
+	    	if (n < k) {
+	            throw new IllegalArgumentException("n debe ser mayor o igual a k");
+	        }
+	    	if (i > k+1) {
+	    		throw new IllegalArgumentException("i debe ser menor que el valor de k+1");
+	    	}
+	    	long resultado = 1;
+	        for (int valor = i; valor < k + 1; valor++) {
+	            resultado *= (valor - 2) * (n - valor);
+	        }
+
+	        return resultado;
+	    	
+	    }
+	    
+	    //APARTADO B
+	    
+	    public static long FuncionC2 (int n, int k) {
+	    	if (n < k) {
+	            throw new IllegalArgumentException("n debe ser mayor a k");
+	        }
+			if (n < 0 || k < 0) {
+				throw new IllegalArgumentException("n y k deben ser positivos");
+			}
+			long coeficienteBinomial = factorial(n) / (factorial(k + 1) * factorial(n - (k + 1)));
+
+			return coeficienteBinomial;	
+	    }
+	    
+	    private static long factorial(int num) {
+	        long resultado = 1;
+	        for (int i = 1; i <= num; i++) {
+	            resultado *= i;
+	        }
+	        return resultado;
+	    }
+	    
+	    //APARTADO C
+	    
+	    public static long FuncionS2(int n, int k) {
+	        if (n < k) {
+	            throw new IllegalArgumentException("El valor de 'n' debe ser mayor o igual que 'k'.");
+	        }
+
+	        long res = (factorial(k) / factorial(k + 2)) * sumatoria(n, k);
+	        
+	        return res;
+	    }
+	    
+	    private static long sumatoria(int n, int k) {
+	        long sumatoria = 0;
+	        for (int i = 0; i < k + 1; i++) {
+	            sumatoria += Math.pow(-1, i) * coeficienteBinomial(k, i) * Math.pow(k - i, n);
+	        }
+	        return sumatoria;
+	    }
+	    
+	    private static long coeficienteBinomial(int n, int k) {
+	        return factorial(n) / (factorial(k) * factorial(n - k));
+	    }
+	     
 }
 

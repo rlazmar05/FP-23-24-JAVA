@@ -175,4 +175,45 @@ public record Fecha(int año, int mes, int dia) {
     public String toString() {
         return DiaSemana() + ", " + dia + " de " + NombreMes() + " de " + año;
     }
+    
+    @Override
+    public int compareTo(Fecha otraFecha) {
+        if (this.año != otraFecha.año) {
+            return Integer.compare(this.año, otraFecha.año);
+        } else if (this.mes != otraFecha.mes) {
+            return Integer.compare(this.mes, otraFecha.mes);
+        } else {
+            return Integer.compare(this.dia, otraFecha.dia);
+        }
+    }
+    
+    //ENTREGA EMPIEZA AQUI
+    
+    //APARTADO D
+    
+    public int DiferenciaEnDías(Fecha otraFecha) {
+        if (this.equals(otraFecha)) {
+            return 0;
+        }
+
+        Fecha fechaMenor;
+        Fecha fechaMayor;
+
+        if (this.compareTo(otraFecha) > 0) {
+            fechaMenor = otraFecha;
+            fechaMayor = this;
+        } else {
+            fechaMenor = this;
+            fechaMayor = otraFecha;
+        }
+
+        int diasDiferencia = 0;
+
+        while (!fechaMenor.equals(fechaMayor)) {
+            fechaMenor = fechaMenor.sumarDías(1);
+            diasDiferencia++;
+        }
+
+        return diasDiferencia;  
+    }
 }

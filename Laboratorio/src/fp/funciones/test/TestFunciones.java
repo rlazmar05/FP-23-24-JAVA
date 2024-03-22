@@ -88,8 +88,49 @@ public class TestFunciones {
 		 // Imprimimos la cadena más larga
 		 System.out.println("La cadena más larga es: " + cadenaMasLarga);
 		        
-		        scanner.close();
+		 		 
 		        
+		 //INICIO DEFENSA
+		 
+		 //APARTADO A
+		 
+		 System.out.print("Ingrese el valor de n: ");
+         int n2 = scanner.nextInt();
+
+         System.out.print("Ingrese el valor de k: ");
+         int k2 = scanner.nextInt();
+
+         System.out.print("Ingrese el valor de i: ");
+         int i = scanner.nextInt();
+
+         long resultado = Funciones.FuncionP2(n2, k2, i);
+         System.out.println("El resultado es: " + resultado);
+		 
+		 //APARTADO B
+		 
+		 System.out.print("Ingrese el valor de n: ");
+         int n3 = scanner.nextInt();
+
+         System.out.print("Ingrese el valor de k: ");
+         int k3 = scanner.nextInt();
+
+         long coeficienteBinomial = Funciones.FuncionC2(n3, k3);
+         System.out.println("El coeficiente binomial es: " + coeficienteBinomial);
+		 
+         
+         //APARTADO C
+         
+         System.out.print("Ingrese el valor de n: ");
+         int n4 = scanner.nextInt();
+
+         System.out.print("Ingrese el valor de k: ");
+         int k4 = scanner.nextInt();
+
+         long res = Funciones.FuncionS2(n4, k4);
+         System.out.println("El resultado es: " + res);
+         
+         
+         scanner.close();
 	}
 }
 		   

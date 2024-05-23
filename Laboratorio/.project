@@ -3,6 +3,7 @@
 	<name>Laboratorio</name>
 	<comment></comment>
 	<projects>
+		<project>FP-23-24-JAVA</project>
 		<project>java_v1</project>
 	</projects>
 	<buildSpec>

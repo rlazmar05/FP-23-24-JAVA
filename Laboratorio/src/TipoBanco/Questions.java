@@ -1,6 +1,6 @@
 package TipoBanco;
 
-import java.time.LocalDate;
+import java.time.LocalDate; 
 import java.util.Comparator;
 import java.util.Map;
 import java.util.Optional;
@@ -83,10 +83,11 @@ public class Questions {
 
 	}
 	
+		
 	public static void main(String[] args) {
 		Banco banco = Banco.of();
-		Set<LocalDate> vencimientos = Questions.vencimientoDePrestamosDeCliente(banco, "57770871T");
-        System.out.println("Vencimientos de prestamos del cliente 57770871T: " + vencimientos);
+		Set<LocalDate> vencimientos = Questions.vencimientoDePrestamosDeCliente(banco, "63552217C");
+        System.out.println("Vencimientos de prestamos del cliente 63552217C: " + vencimientos);
         
         Persona clienteConMasPrestamos = Questions.clienteConMasPrestamos(banco);
         System.out.println("Cliente con más prestamos: " + clienteConMasPrestamos);
@@ -102,6 +103,7 @@ public class Questions {
         
         Map<Info2, Integer> prestamosPorMesAño = Questions.numPrestamosPorMesAño(banco);
         System.out.println("Número de prestamos por mes y año: " + prestamosPorMesAño);
+        
         
         
 	}
